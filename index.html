@@ -1,77 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cognitio+ Blog | Insights & Stories on Mental Health</title>
-  
-  <!-- SEO -->
-  <meta name="description" content="Explore expert articles, stories, and resources on mental health, resilience, and culturally grounded care from Cognitio+." />
-  <meta name="author" content="Cognitio+" />
-  <meta property="og:title" content="Cognitio+ Blog" />
-  <meta property="og:description" content="Your trusted mental health knowledge hub." />
-  <meta property="og:image" content="icons/og-image.png" />
-  <meta property="og:url" content="https://cognitioplus.github.io/blog.html" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Cognitio+ Blog shares expert insights, personal stories, and resources for mental health and resilience, grounded in cultural sensitivity.">
+  <meta name="keywords" content="mental health, resilience, expert articles, Cognitio+, culturally grounded care, blog, wellness">
+  <meta name="author" content="Cognitio+ Team">
+  <meta name="theme-color" content="#2A2E43">
+  <link rel="canonical" href="https://cognitioplus.github.io/blog/index.html">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0077cc" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
-  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" />
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Cognitio+ Blog | Insights & Stories on Mental Health">
+  <meta property="og:description" content="Expert insights and inspiring stories for mental health and resilience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cognitioplus.github.io/blog/index.html">
+  <meta property="og:image" content="icons/og-image.png">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cognitio+ Blog | Insights & Stories on Mental Health">
+  <meta name="twitter:description" content="Expert insights and inspiring stories for mental health and resilience.">
+  <meta name="twitter:image" content="icons/og-image.png">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXX');
+  </script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(error) {
+            console.log('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </head>
 <body>
   <header>
-    <img src="icons/logo.png" alt="Cognitio+ Logo" class="logo" />
-    <h1>Cognitio+ Blog</h1>
-    <p>Your trusted mental health knowledge hub</p>
+    <nav aria-label="Main Navigation">
+      <a href="index.html" class="logo-link" aria-label="Go to Cognitio+ Home">
+        <img src="icons/logo.png" alt="Cognitio+ Logo representing mental health care" class="logo" loading="lazy" />
+      </a>
+      <ul class="nav-list">
+        <li><a href="about.html" aria-label="Read About Cognitio+">About</a></li>
+        <li><a href="articles.html" aria-label="Browse Articles">Articles</a></li>
+        <li><a href="contact.html" aria-label="Contact Cognitio+">Contact</a></li>
+        <li><a href="privacy.html" rel="noopener noreferrer" aria-label="Read Privacy Policy">Privacy & Policy</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="booking.html">Book</a>
-    <a href="helpdesk.html">Helpdesk</a>
-    <a href="blog.html" class="active">Blog</a>
-  </nav>
-
   <main>
-    <section aria-labelledby="latest-posts">
-      <h2 id="latest-posts">Latest Posts</h2>
-      <div id="posts" class="posts-container">
-        <!-- Dynamic posts will load here -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Welcome to Cognitio+ Blog</h1>
+      <p>Insights & Stories on Mental Health, Resilience, and Community Care.</p>
+      <img src="images/hero-mental-health.jpg" alt="A supportive group discussing mental health" class="hero-image" loading="lazy">
+    </section>
+
+    <section class="featured-articles" aria-labelledby="featured-title">
+      <h2 id="featured-title">Featured Articles</h2>
+      <div id="posts-container" class="posts-container">
+        <!-- Dynamic posts will load here via JS -->
       </div>
     </section>
 
-    <section aria-labelledby="leave-comment">
-      <h2 id="leave-comment">Leave a Comment</h2>
-      <form id="commentForm">
-        <label>Name
-          <input type="text" name="name" required />
-        </label>
-        <label>Comment
-          <textarea name="comment" required></textarea>
-        </label>
-        <button type="submit">Post Comment</button>
+    <section class="comments-section" aria-labelledby="comments-title">
+      <h2 id="comments-title">Share Your Thoughts</h2>
+      <form id="commentForm" aria-label="Comment Form">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" aria-required="true" required>
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment" rows="4" aria-required="true" required></textarea>
+        <button type="submit">Submit</button>
       </form>
-      <div id="comments" class="comments-container"></div>
+      <div id="comments-list" class="comments-list" aria-live="polite">
+        <!-- Comments will appear here -->
+      </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Cognitio+ | <a href="privacy.html">Privacy & Policy</a>
+    <p>&copy; 2025 Cognitio+ Blog. All rights reserved.</p>
+    <nav aria-label="Footer Navigation">
+      <a href="https://twitter.com/cognitioplus" rel="noopener noreferrer" aria-label="Follow Cognitio+ on Twitter">Twitter</a>
+      <a href="https://facebook.com/cognitioplus" rel="noopener noreferrer" aria-label="Find Cognitio+ on Facebook">Facebook</a>
+      <a href="privacy.html" rel="noopener noreferrer" aria-label="Privacy Policy">Privacy Policy</a>
+    </nav>
   </footer>
 
-  <script src="blog.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('✅ PWA ready'))
-        .catch(console.error);
-    }
+    // Accessibility & Validation for Comment Form
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+      const name = event.target.name.value.trim();
+      const comment = event.target.comment.value.trim();
+      if (!name || !comment) {
+        alert('Name and Comment fields cannot be empty.');
+        event.preventDefault();
+      } else {
+        // Optionally add logic to save/display comment
+        const commentsList = document.getElementById('comments-list');
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = `<strong>${name}</strong>: <span>${comment}</span>`;
+        commentsList.appendChild(commentDiv);
+        event.target.reset();
+      }
+    });
+
+    // Example: Dynamically load posts (this should be replaced by real JS logic or API)
+    document.addEventListener('DOMContentLoaded', function() {
+      const postsContainer = document.getElementById('posts-container');
+      // Example static posts
+      const posts = [
+        {
+          title: "How Culture Impacts Mental Health",
+          excerpt: "Discover the link between cultural identity and wellness.",
+          url: "articles/culture-mental-health.html",
+          image: "images/culture-mental-health.jpg"
+        },
+        {
+          title: "Building Resilience in Challenging Times",
+          excerpt: "Practical strategies for everyday mental health.",
+          url: "articles/resilience.html",
+          image: "images/resilience.jpg"
+        }
+      ];
+      posts.forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'post';
+        article.innerHTML = `
+          <a href="${post.url}" aria-label="Read ${post.title}">
+            <img src="${post.image}" alt="${post.title}" loading="lazy" width="300" height="180">
+            <h3>${post.title}</h3>
+            <p>${post.excerpt}</p>
+          </a>
+        `;
+        postsContainer.appendChild(article);
+      });
+    });
   </script>
 </body>
 </html>
